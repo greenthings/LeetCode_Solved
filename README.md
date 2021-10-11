@@ -4,8 +4,7 @@
 [1365. How Many Numbers Are Smaller Than the Current Number](https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/).
 
 
-class Solution {
-    func smallerNumbersThanCurrent(_ nums: [Int]) -> [Int] {
+
         var count : Int = 0 // Variables to contain numbers.
         var result : [Int] = [] // The result array.
         
@@ -20,15 +19,10 @@ class Solution {
         }
          
         return result
-        
-    }
-}
+
 
 // Since these for statements take much longer in time complexity than a single for statement, writing multiple for statements is more efficient in terms of time complexity.
 
-class Solution {
-    func smallerNumbersThanCurrent(_ nums: [Int]) -> [Int] {
-        
         var count = Array(repeating: 0, count: 101)
         var result = Array(repeating: 0, count:nums.count)
 
@@ -45,6 +39,5 @@ class Solution {
                 result[i] = count[nums[i] - 1]
             }
         }
-    return result
-    }
-}
+        return result
+
