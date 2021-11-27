@@ -42,7 +42,7 @@
         return result
 
 [617. Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/).
-
+```
 // Definition of TreeNode
 //
 // public class TreeNode {
@@ -62,7 +62,6 @@
 // Mine
 class Solution {
     func mergeTrees(_ root1: TreeNode?, _ root2: TreeNode?) -> TreeNode? {
-        
         // When one tree is empty, the opposite is returned.
         if root1 == nil{
             return root2
@@ -84,7 +83,8 @@ class Solution {
 }
 
 
-// Best solution
+Best solution
+
 class Solution {
     func mergeTrees(_ root1: TreeNode?, _ root2: TreeNode?) -> TreeNode? {
         guard let root1 = root1 else {
@@ -93,7 +93,7 @@ class Solution {
         guard let root2 = root2 else {
             return root1
         }
-        // The function was performed in addition to the existing value without declaring a new variable.
+        //The function was performed in addition to the existing value without declaring a new variable.
         root1.val += root2.val
         
         root1.left = mergeTrees(root1.left, root2.left)
@@ -101,3 +101,4 @@ class Solution {
         return root1
     }
 }
+```
