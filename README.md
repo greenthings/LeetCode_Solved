@@ -82,8 +82,7 @@ class Solution {
     }
 }
 
-
-Best solution
+//Best solution
 
 class Solution {
     func mergeTrees(_ root1: TreeNode?, _ root2: TreeNode?) -> TreeNode? {
