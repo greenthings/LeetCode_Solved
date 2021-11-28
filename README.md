@@ -101,3 +101,28 @@ class Solution {
     }
 }
 ```
+
+
+[136. Single Number](https://leetcode.com/problems/single-number/).
+```
+//Mine
+class Solution {
+    func singleNumber(_ nums: [Int]) -> Int {
+        //Remove duplicate numbers.
+        var numsSet: Set<Int> = []
+        
+        //If there is a value equal to the set, remove the value.
+        for num in nums{
+            
+// Insert method returns false or true if the added value already exists in the set.
+            if numsSet.insert(num).0 == false {
+            numsSet.remove(num)
+            }
+            
+        }
+        return numsSet.first!
+    }
+}
+
+
+```
