@@ -126,3 +126,94 @@ class Solution {
 
 
 ```
+
+[543. Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/).
+
+```
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+
+ * }
+ */
+//Mine
+class Solution {
+    
+    // Global value of longest length 
+    var longest = 0
+    
+    func diameterOfBinaryTree(_ root: TreeNode?) -> Int {
+        //Depth-first search
+        dfs(root)
+        // Return longest length
+        return longest
+    }
+    
+    func dfs(_ node: TreeNode?)->Int{
+        // If empty node return 0
+        guard let node = node else{
+            print("node가 없다.")
+            return 0
+        }
+
+        let left = dfs(node.left)
+        print(node.left)
+       
+        let right = dfs(node.right)
+        print(node.right)
+        
+
+        let sum = left + right
+        if longest < sum {
+            longest = sum
+        }
+        
+        // Returns a larger value between right and left
+        return max(left,right) + 1
+    }
+}
+
+
+
+
+
+
+//Best
+class Solution {
+	
+	private var ans = 0
+	
+	private func solve(_ root: TreeNode?) -> Int {
+		if let root = root {
+			let lh = solve(root.left)
+			let rh = solve(root.right)
+			ans = max(ans, lh + rh)
+			return 1 + max(lh, rh)
+		} else {
+			return 0
+		}
+	}
+	
+	func diameterOfBinaryTree(_ root: TreeNode?) -> Int {
+		ans = 0
+		solve(root)
+		return ans
+	}
+}
+```
+
+
+
