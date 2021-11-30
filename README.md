@@ -165,7 +165,6 @@ class Solution {
     func dfs(_ node: TreeNode?)->Int{
         // If empty node return 0
         guard let node = node else{
-            print("node가 없다.")
             return 0
         }
 
@@ -215,5 +214,128 @@ class Solution {
 }
 ```
 
+[283. Move Zeroes](https://leetcode.com/problems/move-zeroes/).
 
+```
+//Mine
+class Solution {
+    func moveZeroes(_ nums: inout [Int]) {
+        // know original array count
+        let original = nums.count
+        
+        // know array count from which 0 is removed
+        nums = nums.filter { $0 != 0 }
+        let differ = original -  nums.count
+        
+        // append 0s
+        nums.append(contentsOf: Array.init(repeating: 0, count: differ))             
+    }
+}
+
+
+
+// Mine(tried)
+        var count: Int = 0
+        
+        for num in nums{
+            if num == 0{
+                count += 1
+            }
+        }
+        
+        nums = nums.filter { $0 != 0 }
+        
+        for i in 0...count - 1{
+            nums.append(0)
+        }
+//         if nums.contains(0) == false{
+//             return 
+//         }
+//         nums = nums.sorted()
+    
+//         for num in nums{
+//             if nums.first == 0 {
+//                 nums.removeFirst()
+//                 nums.append(0)
+//             }else{
+//                 break
+//             }
+//         }
+        
+        //nums = nums.filtier{ $0 != 0 }
+        
+          
+        //  for num in nums{
+        //     if nums.first == 0 {
+        //         nums.removeFirst()
+        //         nums.append(0)
+        //     }else{
+        //         nums.removeFirst()
+        //     }
+        // }
+             
+        // for i in 0...nums.count - 1{
+        //     print(i)
+        //     print(nums[i])
+        //     if nums[i] == 0 {
+        //         print(nums[i])
+        //         nums.append(nums[i])
+        //         print(nums)
+        //         nums.remove(at:i)    
+        //         print(nums)
+        //     }
+        // }
+        
+        //  for i in 0...nums.count - 1{
+        //     if nums[i] == 0 {
+        //         nums.remove(at:i)
+        //         nums.append(0)
+        //     }
+        // }
+        
+        // Try codes
+        // for num in nums{
+        //   if num == 0{
+        //       nums.remove(object: num)
+        //       nums.append(num)
+        //   }
+        // }
+
+
+
+//Best
+class Solution {
+    func moveZeroes(_ nums: inout [Int]) {
+        var writeIdx = 0
+        // Move non-zero items
+        for num in nums where num != 0 {
+            nums[writeIdx] = num
+            writeIdx += 1
+        }
+        // Fill the remaining with zero
+        for i in writeIdx..<nums.count {
+            nums[i] = 0
+        }
+    }
+}
+
+class Solution {
+    func moveZeroes(_ nums: inout [Int]) {
+        guard !nums.isEmpty else { return }
+
+        var j = 0
+
+        for i in 0..<nums.endIndex {
+            if nums[i] != 0 {
+                nums[j] = nums[i]
+                if j != i {
+                    nums[i] = 0
+                }
+                j += 1
+            }
+        }
+
+    }
+}
+```
 
