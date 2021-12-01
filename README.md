@@ -59,8 +59,12 @@ class Solution {
       1. sorted array by value in ascending order & remap index
           values = [1, 2, 2, 3, 8]
           indices[value] = min(indices[value], i)
+	  
       2. input.map { indices[$0]! } is the answer
       */
+      // .enumerated() = return a sequnce of pairs like (n,x)
+      // .offset = Offset means additional distances
+      
       let indices = nums.sorted().enumerated().reversed().reduce(into: [Int: Int]()) { $0[$1.element] = $1.offset }
       return nums.map { indices[$0]! }
     }
