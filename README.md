@@ -8,6 +8,7 @@
         var count : Int = 0 // Variables to contain numbers.
         var result : [Int] = [] // The result array.
         
+	//If the number is small while circulating, the count increases one by one
         for num in nums{
             for i in 0..<nums.count{
                 if num > nums[i] {
@@ -20,7 +21,7 @@
          
         return result
 
-
+```
 // Since these for statements take much longer in time complexity than a single for statement, writing multiple for statements is more efficient in terms of time complexity.
 
         var count = Array(repeating: 0, count: 101)
@@ -40,6 +41,31 @@
             }
         }
         return result
+```
+
+```
+// Best 
+class Solution {
+    func smallerNumbersThanCurrent(_ nums: [Int]) -> [Int] {
+        
+      /*
+      [] -> []
+      [Int] -> [Int]
+      
+      input: [8,1,2,2,3]      
+      
+      output: [4,0,1,1,3]
+      
+      1. sorted array by value in ascending order & remap index
+          values = [1, 2, 2, 3, 8]
+          indices[value] = min(indices[value], i)
+      2. input.map { indices[$0]! } is the answer
+      */
+      let indices = nums.sorted().enumerated().reversed().reduce(into: [Int: Int]()) { $0[$1.element] = $1.offset }
+      return nums.map { indices[$0]! }
+    }
+}	
+```
 
 [617. Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/).
 ```
